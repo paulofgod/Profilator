@@ -18,17 +18,23 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import environ
+
+env = environ.Env()
+
+environ.Env.read_env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = '(um^wr!j3=h_a0(n4z7o5fqrufrj&9*)dgk038a)0(*9b-=i6y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,6 +85,12 @@ WSGI_APPLICATION = 'profilator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Configure database settings
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
+}
+
+
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,8 +98,6 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
