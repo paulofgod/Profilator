@@ -32,7 +32,7 @@ environ.Env.read_env()
 SECRET_KEY = '(um^wr!j3=h_a0(n4z7o5fqrufrj&9*)dgk038a)0(*9b-=i6y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
